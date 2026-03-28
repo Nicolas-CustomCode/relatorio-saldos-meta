@@ -48,3 +48,9 @@ export type AdAccountBalanceResponse = {
     is_prepay_account: boolean,
     id: string
 }
+
+export type AccountInfo = {
+    id: string,
+    name: string,
+    balance: number
+}
