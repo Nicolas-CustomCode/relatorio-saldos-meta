@@ -7,21 +7,29 @@
 .table td {
     padding: 10px;
     text-align: left;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
 }
 
 .table thead {
     position: sticky;
     top: 0;
-    background-color: var(--background);
+    background-color: var(--foreground);
 }
 
 .table th {
     font: var(--font-h3);
-    color: var(--text-title-light);
+    color: var(--text-title-dark);
 }
 
 .table td {
     font: var(--font-body);
     color: var(--text-body-light);
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f3f4f6;
+}
+
+.table tbody tr:hover {
+    background-color: #ccdfff;
 }

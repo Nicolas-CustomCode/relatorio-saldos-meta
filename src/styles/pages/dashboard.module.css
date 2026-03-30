@@ -7,8 +7,14 @@
     gap: 48px;
 }
 
-.main h1 {
+.header h1 {
     font: var(--font-h1);
+    color: var(--text-title-light);
+}
+
+.header p {
+    font: var(--font-body);
+    color: var(--text-body-light);
 }
 
 .tableContainer {
@@ -17,7 +23,7 @@
     overflow-y: scroll;
     border-radius: 14px;
     scrollbar-gutter: stable;
-    border: 2px solid black;
+    /* border: 2px solid black; */
 }
 
 .tableSection {

@@ -2,7 +2,7 @@
 
 import { pgAccount } from "@/src/types/business"
 import { useEffect, useState } from "react"
-import { PrimaryButton } from "../components/Buttons"
+import { Button } from "../components/Buttons"
 import styles from '@/src/styles/pages/dashboard.module.css'
 import Table from "../components/Table"
 
@@ -33,13 +33,16 @@ export default function Dashboard() {
 
     return (
         <main className={styles.main}>
-            <h1>Relatório de saldos de contas de anúncio</h1>
+            <header className={styles.header}>
+                <h1>RELATÓRIO DE SALDOS</h1>
+                <p>Veja os saldos mais recentes das contas de anúncio que possui acesso!</p>
+            </header>
 
             <section className={styles.tableSection}>
                 <div className={styles.tableContainer}>
                     <Table data={sortedList}></Table>
                 </div>
-                <PrimaryButton variant="primary" onClick={updateBalances} disabled={loading}>Atualizar</PrimaryButton>
+                <Button variant="primary" onClick={updateBalances} disabled={loading}>Atualizar</Button>
             </section>
         </main>
     )
