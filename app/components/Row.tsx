@@ -1,10 +1,16 @@
 import { pgAccount } from '@/src/types/business'
+import styles from '@/src/styles/components/row.module.css'
 
 export default function Row({ data }: { data: pgAccount }) {
     const balanceBrl = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL'
     }).format(data.balance)
+
+    const minimumBrl = data.minimum === null ? '-' : new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    }).format(data.minimum)
 
     const date = new Date(data.updated).toLocaleString('pt-BR', {
         day: '2-digit',
@@ -20,10 +26,10 @@ export default function Row({ data }: { data: pgAccount }) {
         currency: 'BRL'
     }).format(data.minimum)
 
-    const status = data.balance >= data.minimum ? 'Ok' : 'Atenção'
+    const status = data.minimum !== 0 && Number(data.balance) >= Number(data.minimum) ? 'Ok' : 'Atenção'
 
     return (
-        <tr>
+        <tr className={status === 'Atenção' ? styles.attention : ''}>
             <td><p>{data.id}</p></td>
             <td><p>{data.name}</p></td>
             <td><p>{minimumBrl ?? '-'}</p></td>

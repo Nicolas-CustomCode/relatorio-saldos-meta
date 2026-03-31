@@ -12,11 +12,9 @@ export async function loopOverBusinesses(data: BusinessResponse) {
         for (const account of accounts.data) {
             const accountData: AdAccountBalanceResponse = await getAccountBalance(account)
 
-            const raw: number = accountData.is_prepay_account ? Number(accountData.funding_source_details.display_string.match(/[\d.,]+/)?.[0]?.replace(/[.,]/g, '')) / 100 : Number(accountData.balance)
-
-            const brl: number = Number(raw.toFixed(2))
-
-            console.log(brl)
+            const brl: number = accountData.is_prepay_account
+                ? Number(accountData.funding_source_details.display_string.match(/[\d.,]+/)?.[0]?.replace(/[.,]/g, '')) / 100
+                : Number(accountData.balance) / 100
 
             const accountInfo: AccountInfo = {
                 id: accountData.id,
@@ -24,7 +22,7 @@ export async function loopOverBusinesses(data: BusinessResponse) {
                 balance: brl
             }
 
-            raw !== 0 && await upsertBalance(accountInfo)
+            brl !== 0 && await upsertBalance(accountInfo)
         }
     }
 }

@@ -9,7 +9,6 @@ import EditTable from "../components/EditTable"
 export default function Dashboard() {
     const [businessList, setBusinessList] = useState<pgAccount[]>([])
     const [loading, setLoading] = useState<boolean>(false)
-    const [newRows, setNewRows] = useState<pgAccount[]>([])
     const sortedList: pgAccount[] = [...businessList].sort((a, b) => (
         a.name.localeCompare(b.name)
     ))
@@ -21,7 +20,20 @@ export default function Dashboard() {
     }
 
     async function upsertAccounts() {
-        await fetch('/api/upsert-accounts')
+        try {
+            setLoading(true)
+
+            await fetch('/api/upsert-accounts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(businessList)
+            })
+        }
+        finally {
+            setLoading(false)
+        }
     }
 
     useEffect(() => {
@@ -37,10 +49,10 @@ export default function Dashboard() {
 
             <section className={styles.tableSection}>
                 <div className={styles.tableContainer}>
-                    <EditTable data={sortedList}></EditTable>
+                    <EditTable data={sortedList} onChange={setBusinessList}></EditTable>
                 </div>
 
-                <Button variant="primary" onClick={upsertAccounts}>Salvar</Button>
+                <Button variant="primary" onClick={upsertAccounts} disabled={loading}>{loading ? 'Salvando...' : 'Salvar'}</Button>
             </section>
         </main>
     )
