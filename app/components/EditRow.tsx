@@ -4,6 +4,7 @@ import { useState } from 'react'
 export default function Row({ data, onChange }: { data: pgAccount, onChange: (updated: pgAccount) => void }) {
     const [minimum, setMinimum] = useState<number | ''>(data.minimum ?? '')
     const [type, setType] = useState<string>(data.type ?? '')
+    const [show, setShow] = useState<boolean>(data.show ?? true)
 
     const handleMinimumChange = (value: number | '') => {
         setMinimum(value)
@@ -13,6 +14,11 @@ export default function Row({ data, onChange }: { data: pgAccount, onChange: (up
     const handleTypeChange = (value: string) => {
         setType(value)
         onChange({ ...data, minimum: minimum === '' ? null : minimum, type: value })
+    }
+
+    const handleShowChange = (value: boolean) => {
+        setShow(value)
+        onChange({ ...data, minimum: minimum === '' ? null : minimum, type, show: value }) // alterado: envia show atualizado
     }
 
     return (
@@ -40,7 +46,7 @@ export default function Row({ data, onChange }: { data: pgAccount, onChange: (up
                 </select>
             </td>
             <td>
-                <input type="checkbox" name="show" id="show" checked={data.show} />
+                <input type="checkbox" name="show" id={`show-${data.id}`} checked={data.show} onChange={(e) => handleShowChange(e.target.checked)} />
             </td>
         </tr>
     )

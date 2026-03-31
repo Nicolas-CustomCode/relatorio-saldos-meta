@@ -2,7 +2,7 @@ import { pgAccount } from "@/src/types/business";
 import Row from "./Row";
 import styles from "@/src/styles/components/table.module.css"
 
-export default function Table({data}: {data: pgAccount[]}) {
+export default function Table({ data }: { data: pgAccount[] }) {
     return (
         <table className={styles.table}>
             <thead>
@@ -18,7 +18,7 @@ export default function Table({data}: {data: pgAccount[]}) {
             </thead>
             <tbody>
                 {data.map((account) => (
-                    <Row key={account.id} data={account}></Row>
+                    account.show && <Row key={account.id} data={account}></Row>
                 ))}
             </tbody>
         </table>
