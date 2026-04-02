@@ -17,15 +17,15 @@ export async function getBusinesses(): Promise<BusinessResponse> {
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`)
         }
-        
+
         const json: BusinessResponse = await response.json()
-        
+
         // console.log('getAccountBalance:', json)
 
         return json
     }
     catch (error) {
         console.error((error as Error).message)
-        throw error
+        return { data: [] }
     }
 }

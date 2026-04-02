@@ -13,6 +13,7 @@ export default function SideBar() {
     const navItems = [
         { name: 'Saldos', href: '/saldos', icon: 'account_balance' },
         { name: 'Leads', href: '/leads', icon: 'visibility' },
+        { name: 'Mensagens', href: '/mensagens', icon: 'message' },
     ]
 
     const handleLogout = async () => {
