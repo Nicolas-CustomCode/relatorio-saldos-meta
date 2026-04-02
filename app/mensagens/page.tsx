@@ -14,10 +14,10 @@ export default function Mensagens() {
     const fetchData = async () => {
         try {
             setLoading(true);
-            
+
             // Parallel fetching - now using list-groups (local DB) instead of get-groups (external API)
             const [bmsRes, groupsRes, configsRes] = await Promise.all([
-                fetch('/api/list-bms'),
+                fetch('/api/list-businesses'),
                 fetch('/api/list-groups'),
                 fetch('/api/list-messaging')
             ]);
@@ -80,7 +80,7 @@ export default function Mensagens() {
                     <h1 className="text-4xl font-bold text-on-surface tracking-tight leading-none mb-2">Mensagens Automáticas</h1>
                     <p className="text-on-surface-variant font-medium">Configure as mensagens enviadas aos grupos para cada conta de anúncio.</p>
                 </div>
-                <button 
+                <button
                     onClick={handleSync}
                     disabled={loading || isSyncing}
                     className="flex items-center gap-2 px-4 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface text-sm font-bold rounded-lg transition-colors border border-outline-variant/10 shadow-sm"
