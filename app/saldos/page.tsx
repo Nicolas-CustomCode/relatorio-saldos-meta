@@ -94,7 +94,7 @@ export default function Dashboard() {
                 </div>
 
                 {/* Summary Card 3: Próxima Atualização */}
-                {/* <div className="bg-primary p-6 rounded-xl shadow-lg shadow-primary/20 text-white relative overflow-hidden flex flex-col justify-between">
+                <div className="bg-primary p-6 rounded-xl shadow-lg shadow-primary/20 text-white relative overflow-hidden flex flex-col justify-between">
                     <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-white/10 rounded-full blur-2xl"></div>
                     <div>
                         <p className="text-xs font-bold opacity-80 uppercase tracking-widest mb-4">Status do Sistema</p>
@@ -111,7 +111,7 @@ export default function Dashboard() {
                     >
                         {loading ? 'Sincronizando...' : 'Forçar Sync'}
                     </button>
-                </div> */}
+                </div>
             </div>
 
             {/* Main Data Table Container */}
