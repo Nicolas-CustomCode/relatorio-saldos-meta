@@ -23,7 +23,7 @@ export async function listLeads(startDate: string | null, endDate: string | null
         paramIndex++;
     }
 
-    query += ` ORDER BY date DESC`;
+    query += ` ORDER BY LOWER(bm) ASC, date DESC`;
 
     const res = await pool.query(query, values);
     return res.rows;

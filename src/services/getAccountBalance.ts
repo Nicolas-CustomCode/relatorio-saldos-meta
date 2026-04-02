@@ -18,7 +18,7 @@ export async function getAccountBalance(data: AdAccounts): Promise<AdAccountBala
 
         const json: AdAccountBalanceResponse = await response.json()
 
-        console.log('getAccountBalance =', json)
+        // console.log('getAccountBalance =', json)
 
         return json
     }

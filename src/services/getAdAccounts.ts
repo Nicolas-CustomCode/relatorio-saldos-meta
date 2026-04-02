@@ -18,7 +18,7 @@ export async function getAdAccounts(data: Business): Promise<AdAccountsResponse>
 
         const data: AdAccountsResponse = await response.json()
 
-        console.log('getAdAccounts =', data)
+        // console.log('getAdAccounts =', data)
 
         return data
     }

@@ -11,15 +11,16 @@ export async function GET() {
     for (const business of businesses.data) {
         const accounts: AdAccountsResponse = await getAdAccounts(business)
 
-        let leadCount = 0
+        let leadCount: number = 0
+
+        business.id === '681359605568422' && console.log(business)
 
         for (const account of accounts.data) {
             const leads = await getDailyLeads(account.id)
 
-            console.log('leads = ', leads)
+            business.id === '681359605568422' && console.log('leads = ', leads.data?.[0]?.actions?.[0]?.value)
 
-            leadCount += leads.data?.[0]?.actions?.[0]?.value ?? 0
-
+            leadCount += Number(leads.data?.[0]?.actions?.[0]?.value ?? 0)
         }
 
         const businessLeads: BmLead = {
@@ -28,7 +29,7 @@ export async function GET() {
             total: leadCount
         }
 
-        console.log('businessLeads = ', businessLeads)
+        // console.log('businessLeads = ', businessLeads)
 
         insertLeads(businessLeads)
     }

@@ -20,7 +20,7 @@ export async function getBusinesses(): Promise<BusinessResponse> {
         
         const json: BusinessResponse = await response.json()
         
-        console.log('getAccountBalance:', json)
+        // console.log('getAccountBalance:', json)
 
         return json
     }

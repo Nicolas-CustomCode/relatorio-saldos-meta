@@ -20,6 +20,6 @@ export async function getDailyLeads(accountId: string) {
         return data
     }
     catch (error) {
-        console.log((error as Error).message)
+        // console.error((error as Error).message)
     }
 }
