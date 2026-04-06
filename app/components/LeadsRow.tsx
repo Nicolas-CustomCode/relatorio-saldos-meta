@@ -1,10 +1,11 @@
 import type { LeadData } from "@/src/types/business";
 
 export default function LeadsRow({ data }: { data: LeadData }) {
-    const formattedDate = new Date(data.date).toLocaleString('pt-BR', {
+    const formattedDate = new Date(data.date).toLocaleDateString('pt-BR', {
         day: '2-digit',
         month: '2-digit',
         year: 'numeric',
+        timeZone: 'UTC'
     });
 
     return (
