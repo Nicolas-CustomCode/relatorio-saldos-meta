@@ -2,8 +2,9 @@
 
 import { PgAccount } from "@/src/types/business"
 import { useEffect, useState } from "react"
-import { Button } from "../../components/Button"
+import { Button } from "@/components/ui/button"
 import EditTable from "../../components/EditTable"
+import { Save } from "lucide-react"
 
 export default function Dashboard() {
     const [businessList, setBusinessList] = useState<PgAccount[]>([])
@@ -47,7 +48,10 @@ export default function Dashboard() {
                     <p className="text-on-surface-variant font-medium">Configure os parâmetros operacionais de limite e exibição.</p>
                 </div>
                 <div className="flex gap-2">
-                    <Button variant="primary" onClick={upsertAccounts} disabled={loading}>{loading ? 'Salvando...' : 'Salvar Alterações'}</Button>
+                    <Button variant="outline" onClick={upsertAccounts} disabled={loading} className="font-bold shadow-sm">
+                        <Save className="mr-2 h-4 w-4" />
+                        {loading ? 'Salvando...' : 'Salvar Alterações'}
+                    </Button>
                 </div>
             </div>
 

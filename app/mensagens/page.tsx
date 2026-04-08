@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import MensagensTable from "../components/MensagensTable";
 import type { dbBusinessMessaging, FetchGroups } from "@/src/types/evolution";
 import type { Business } from "@/src/types/business";
+import { Button } from "@/components/ui/button";
 
 export default function Mensagens() {
     const [combinedData, setCombinedData] = useState<dbBusinessMessaging[]>([]);
@@ -80,21 +81,22 @@ export default function Mensagens() {
                     <h1 className="text-4xl font-bold text-on-surface tracking-tight leading-none mb-2">Mensagens Automáticas</h1>
                     <p className="text-on-surface-variant font-medium">Configure as mensagens enviadas aos grupos para cada conta de anúncio.</p>
                 </div>
-                <button
+                <Button
                     onClick={handleSync}
                     disabled={loading || isSyncing}
-                    className="flex items-center gap-2 px-4 py-2 bg-surface-container hover:bg-surface-container-high text-on-surface text-sm font-bold rounded-lg transition-colors border border-outline-variant/10 shadow-sm"
+                    variant="outline"
+                    className="flex items-center gap-2 font-bold shadow-sm"
                 >
                     <span className={`material-symbols-outlined text-lg ${isSyncing ? 'animate-spin' : ''}`}>
                         {isSyncing ? 'progress_activity' : 'sync'}
                     </span>
                     {isSyncing ? 'Sincronizando...' : 'Sincronizar Grupos'}
-                </button>
+                </Button>
             </div>
 
             {/* Metrics Section */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-surface-container-lowest p-6 rounded-xl shadow-[4px_0_24px_-4px_rgba(44,52,55,0.06)] group">
+                <div className="bg-surface-container-lowest border border-border p-6 rounded-xl shadow-sm group">
                     <p className="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Total de BMs</p>
                     <div className="flex items-center justify-between">
                         <h3 className="text-4xl font-black text-on-surface">{combinedData.length}</h3>
@@ -104,7 +106,7 @@ export default function Mensagens() {
                     </div>
                 </div>
 
-                <div className="bg-surface-container-lowest p-6 rounded-xl shadow-[4px_0_24px_-4px_rgba(44,52,55,0.06)] group">
+                <div className="bg-surface-container-lowest border border-border p-6 rounded-xl shadow-sm group">
                     <p className="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Grupos Disponíveis</p>
                     <div className="flex items-center justify-between">
                         <h3 className="text-4xl font-black text-on-surface">{groups.length}</h3>
@@ -114,7 +116,7 @@ export default function Mensagens() {
                     </div>
                 </div>
 
-                <div className="bg-surface-container-lowest p-6 rounded-xl shadow-[4px_0_24px_-4px_rgba(44,52,55,0.06)] group">
+                <div className="bg-surface-container-lowest border border-border p-6 rounded-xl shadow-sm group">
                     <p className="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Envios Ativos</p>
                     <div className="flex items-center justify-between">
                         <h3 className="text-4xl font-black text-on-surface">{combinedData.filter(d => d.active).length}</h3>
@@ -126,7 +128,7 @@ export default function Mensagens() {
             </div>
 
             {/* Table Section */}
-            <div className="bg-surface-container-lowest rounded-xl shadow-[0_4px_32px_rgba(0,0,0,0.03)] overflow-hidden">
+            <div className="bg-surface-container-lowest border border-border rounded-xl shadow-sm overflow-hidden">
                 <div className="px-6 py-5 border-b border-outline-variant/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div className="flex items-center gap-2">
                         <h4 className="text-sm font-bold text-on-surface-variant uppercase tracking-widest whitespace-nowrap">Gerenciador de Envio</h4>

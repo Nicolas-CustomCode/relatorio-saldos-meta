@@ -1,8 +1,16 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import LeadsTable from "../components/LeadsTable"
 import type { LeadData } from "@/src/types/business"
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table"
 
 export default function Leads() {
     const defaultDate = (() => {
@@ -81,7 +89,7 @@ export default function Leads() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
                 {/* Summary Card 1: Total de Leads */}
-                <div className="bg-surface-container-lowest p-6 rounded-xl shadow-[4px_0_24px_-4px_rgba(44,52,55,0.06)] group">
+                <div className="bg-surface-container-lowest border border-border p-6 rounded-xl shadow-sm group">
                     <p className="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Total de Leads</p>
                     <div className="flex items-center justify-between">
                         <h3 className="text-4xl font-black text-on-surface">{totalLeads}</h3>
@@ -92,7 +100,7 @@ export default function Leads() {
                 </div>
 
                 {/* Summary Card 2: Contas Listadas */}
-                <div className="bg-surface-container-lowest p-6 rounded-xl shadow-[4px_0_24px_-4px_rgba(44,52,55,0.06)] group">
+                <div className="bg-surface-container-lowest border border-border p-6 rounded-xl shadow-sm group">
                     <p className="text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-4">Registros Exibidos</p>
                     <div className="flex items-center justify-between">
                         <h3 className="text-3xl font-black text-on-surface">{leadsList.length.toString().padStart(2, '0')}</h3>
@@ -132,7 +140,7 @@ export default function Leads() {
             </div>
 
             {/* Table and Filters Section */}
-            <div className="bg-surface-container-lowest rounded-xl shadow-[0_4px_32px_rgba(0,0,0,0.03)] overflow-hidden">
+            <div className="bg-surface-container-lowest border border-border rounded-xl shadow-sm overflow-hidden">
                 <div className="px-6 py-5 border-b border-outline-variant/10 flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <h4 className="text-sm font-bold text-on-surface-variant uppercase tracking-widest whitespace-nowrap">Listagem de Leads</h4>
 
@@ -174,7 +182,42 @@ export default function Leads() {
                 </div>
 
                 <div className="overflow-x-auto relative min-h-[200px]">
-                    <LeadsTable data={leadsList} />
+                    <Table>
+                        <TableHeader>
+                            <TableRow className="bg-surface-container-low/30">
+                                <TableHead className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest w-1/4">Id da Conta</TableHead>
+                                <TableHead className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest w-1/3">Nome da Conta</TableHead>
+                                <TableHead className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-center">Total de Leads</TableHead>
+                                <TableHead className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-right">Data de Consulta</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody className="divide-y divide-outline-variant/5">
+                            {leadsList.map((lead, index) => {
+                                const formattedDate = new Date(lead.date).toLocaleDateString('pt-BR', {
+                                    day: '2-digit',
+                                    month: '2-digit',
+                                    year: 'numeric',
+                                    timeZone: 'UTC'
+                                });
+
+                                return (
+                                    <TableRow key={`${lead.id}-${index}`} className="hover:bg-surface-container-high transition-colors">
+                                        <TableCell className="px-6 py-5 font-mono text-xs text-on-surface-variant">{lead.id}</TableCell>
+                                        <TableCell className="px-6 py-5 text-sm font-semibold text-on-surface">{lead.bm}</TableCell>
+                                        <TableCell className="px-6 py-5 text-sm font-bold text-center text-primary">{lead.total}</TableCell>
+                                        <TableCell className="px-6 py-5 text-xs text-on-surface-variant text-right">{formattedDate}</TableCell>
+                                    </TableRow>
+                                );
+                            })}
+                            {leadsList.length === 0 && !loading && (
+                                <TableRow>
+                                    <TableCell colSpan={4} className="px-6 py-8 text-center text-on-surface-variant text-sm">
+                                        Nenhum lead encontrado para os filtros selecionados.
+                                    </TableCell>
+                                </TableRow>
+                            )}
+                        </TableBody>
+                    </Table>
                     {loading && (
                         <div className="absolute inset-0 bg-surface-container-lowest/50 backdrop-blur-[1px] flex items-center justify-center">
                             <span className="material-symbols-outlined animate-spin text-primary text-4xl" data-icon="progress_activity">progress_activity</span>
