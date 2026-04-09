@@ -2,7 +2,7 @@ import { pool } from "@/src/lib/db";
 
 export async function listLeads(startDate: string | null, endDate: string | null, bm: string | null) {
     let query = `SELECT * FROM meta.leads WHERE 1=1`;
-    const values: any[] = [];
+    const values: string[] = [];
     let paramIndex = 1;
 
     if (startDate) {

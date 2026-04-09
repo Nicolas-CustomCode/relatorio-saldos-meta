@@ -10,7 +10,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
     const businesses = await listBusinesses()
-    const messagingConfigs: dbBusinessMessaging[] = await listMessaging() as any[]
+    const messagingConfigs: dbBusinessMessaging[] = await listMessaging()
 
     for (const business of businesses) {
         const accounts: AdAccountsResponse = await getAdAccounts(business)

@@ -16,16 +16,15 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-  useSidebar,
 } from "@/components/ui/sidebar"
-import { 
-  BarChart2, 
-  Users, 
-  MessageSquare, 
-  RefreshCw, 
+import {
+  BarChart2,
+  Users,
+  MessageSquare,
+  RefreshCw,
   LogOut,
-  LayoutDashboard
 } from "lucide-react"
+import Image from "next/image"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname()
@@ -71,7 +70,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenuButton size="lg" asChild>
               <Link href="/">
                 <div className="flex aspect-square size-8 items-center justify-center rounded-lg text-sidebar-primary-foreground">
-                  <img src={logo.src} alt="RD System" className="size-8" />
+                  <Image src={logo} alt="RD System" width={32} height={32} />
                 </div>
                 <div className="flex flex-col gap-0.5 leading-none">
                   <span className="font-semibold uppercase tracking-widest text-xs">RD System</span>
@@ -107,8 +106,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton 
-              onClick={handleSync} 
+            <SidebarMenuButton
+              onClick={handleSync}
               disabled={isSyncing}
               tooltip={isSyncing ? "Sincronizando..." : "Sincronizar BMs"}
             >

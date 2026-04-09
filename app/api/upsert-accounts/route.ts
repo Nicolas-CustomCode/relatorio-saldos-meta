@@ -1,4 +1,3 @@
-import { pool } from "@/src/lib/db"
 import { upsertAccounts } from "@/src/repositories/upsertAccounts"
 import { PgAccount } from "@/src/types/business"
 

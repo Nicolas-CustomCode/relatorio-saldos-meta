@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json({ error: 'Credenciais inválidas' }, { status: 401 });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Erro ao processar login' }, { status: 500 });
   }
 }

@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from '../components/Button';
+import Image from 'next/image';
 import logo from '../../public/logo.png'
+import { Button } from '@/components/ui/button';
 
 export default function LoginPage() {
     const [username, setUsername] = useState('');
@@ -34,6 +35,7 @@ export default function LoginPage() {
             }
         } catch (err) {
             setError('Ocorreu um erro de conexão.');
+            console.error(err);
         } finally {
             setLoading(false);
         }
@@ -43,7 +45,7 @@ export default function LoginPage() {
         <div className="flex flex-col items-center justify-center min-h-screen w-full bg-background p-8 absolute left-0 top-0 z-[100]">
             <div className="w-full max-w-md bg-surface-container-lowest p-8 rounded-2xl shadow-[4px_0_24px_-4px_rgba(44,52,55,0.06)] border border-outline-variant/10">
                 <div className="text-center mb-10">
-                    <img src={logo.src} alt="logo" className='w-16 h-16 mx-auto' />
+                    <Image src={logo} alt="logo" width={64} height={64} className='mx-auto' />
                     <h1 className="text-2xl font-black text-on-surface uppercase tracking-widest text-sm">RD System</h1>
                     <p className="text-xs text-on-surface-variant font-medium mt-1">Acesso ao painel de relatórios</p>
                 </div>
@@ -88,7 +90,7 @@ export default function LoginPage() {
                         </div>
                     )}
 
-                    <Button type="submit" variant="primary" className="w-full py-4 text-sm mt-4" disabled={loading}>
+                    <Button type="submit" className="w-full py-4 text-sm mt-4" disabled={loading}>
                         {loading ? 'Validando...' : 'Acessar Painel'}
                     </Button>
                 </form>

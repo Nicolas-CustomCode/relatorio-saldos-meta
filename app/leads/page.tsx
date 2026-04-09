@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import type { LeadData } from "@/src/types/business"
 import {
     Table,
@@ -27,7 +27,7 @@ export default function Leads() {
     const [endDate, setEndDate] = useState<string>(defaultDate)
     const [bmFilter, setBmFilter] = useState<string>('')
 
-    async function getLeadsList() {
+    const getLeadsList = useCallback(async () => {
         try {
             setLoading(true)
             const params = new URLSearchParams()
@@ -43,18 +43,12 @@ export default function Leads() {
         } finally {
             setLoading(false)
         }
-    }
+    }, [startDate, endDate, bmFilter])
 
     useEffect(() => {
         getLeadsList()
-    }, [startDate, endDate])
+    }, [startDate, endDate, bmFilter, getLeadsList])
 
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            getLeadsList()
-        }, 500)
-        return () => clearTimeout(timeout)
-    }, [bmFilter])
 
     const totalLeads = leadsList.reduce((acc, curr) => acc + Number(curr.total), 0)
 

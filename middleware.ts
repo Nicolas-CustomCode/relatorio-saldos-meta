@@ -23,7 +23,7 @@ export async function middleware(request: NextRequest) {
         if (request.nextUrl.pathname === '/login') {
           return NextResponse.redirect(new URL('/saldos', request.url));
         }
-      } catch (err) {
+      } catch {
         // Token inválido, segue o fluxo para o login
       }
     }
@@ -46,7 +46,7 @@ export async function middleware(request: NextRequest) {
 
     // Segue viagem
     return NextResponse.next();
-  } catch (error) {
+  } catch {
     // Token corrompido ou expirado
     const response = NextResponse.redirect(new URL('/login', request.url));
     response.cookies.delete('jwt_token');

@@ -1,4 +1,4 @@
-import type { AdAccountBalanceResponse, AdAccounts, AdAccountsResponse } from "../types/business";
+import type { AdAccountBalanceResponse, AdAccounts } from "../types/business";
 
 export async function getAccountBalance(data: AdAccounts): Promise<AdAccountBalanceResponse> {
     const url: string = `https://graph.facebook.com/v25.0/${data.id}?fields=balance,currency,funding_source_details,name,is_prepay_account`
