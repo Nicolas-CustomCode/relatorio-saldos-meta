@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest) {
         await jwtVerify(token, secret);
         // Token é válido, não precisa logar de novo
         if (request.nextUrl.pathname === '/login') {
-          return NextResponse.redirect(new URL('/saldos', request.url));
+          return NextResponse.redirect(new URL('/trafego/saldos', request.url));
         }
       } catch {
         // Token inválido, segue o fluxo para o login
@@ -41,7 +41,7 @@ export async function middleware(request: NextRequest) {
 
     // Se acessou a raiz '/', leva para o dashboard
     if (request.nextUrl.pathname === '/') {
-      return NextResponse.redirect(new URL('/saldos', request.url));
+      return NextResponse.redirect(new URL('/trafego/saldos', request.url));
     }
 
     // Segue viagem

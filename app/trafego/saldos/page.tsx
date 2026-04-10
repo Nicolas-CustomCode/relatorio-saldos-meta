@@ -81,7 +81,7 @@ export default function Saldos() {
                     <p className="text-muted-foreground">Visão consolidada das contas e saúde financeira.</p>
                 </div>
                 <Button asChild variant="outline" className="shadow-sm font-bold">
-                    <Link href="/saldos/edit" className="flex items-center gap-2">
+                    <Link href="/trafego/saldos/edit" className="flex items-center gap-2">
                         <Pen className="h-4 w-4" />
                         Editar Contas
                     </Link>

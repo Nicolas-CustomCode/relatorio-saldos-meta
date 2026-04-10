@@ -105,7 +105,7 @@ export default function EditContas() {
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
                     <Button variant="ghost" size="icon" asChild>
-                        <Link href="/saldos">
+                        <Link href="/trafego/saldos">
                             <ChevronLeft className="h-5 w-5" />
                         </Link>
                     </Button>

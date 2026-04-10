@@ -47,7 +47,7 @@ export default function LoginPage() {
 
             if (res.ok) {
                 // Sucesso na autenticação, envia de volta para o dashboard
-                router.push('/saldos');
+                router.push('/trafego/saldos');
                 router.refresh(); // Força reset interno do novo cookie na cache visual
             } else {
                 const data = await res.json();

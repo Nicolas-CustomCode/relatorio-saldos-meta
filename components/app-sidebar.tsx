@@ -33,10 +33,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   if (pathname === '/login') return null
 
-  const navItems = [
-    { name: 'Saldos', href: '/saldos', icon: BarChart2 },
-    { name: 'Leads', href: '/leads', icon: Users },
-    { name: 'Mensagens', href: '/mensagens', icon: MessageSquare },
+  const trafficItems = [
+    { name: 'Saldos', href: '/trafego/saldos', icon: BarChart2 },
+    { name: 'Leads', href: '/trafego/leads', icon: Users },
+    { name: 'Mensagens', href: '/trafego/mensagens', icon: MessageSquare },
+  ]
+  
+  const rdStationItems = [
+    { name: 'Mensagens', href: '/rd-station/leads', icon: MessageSquare },
   ]
 
   const handleSync = async () => {
@@ -83,10 +87,30 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Navegação</SidebarGroupLabel>
+          <SidebarGroupLabel>Tráfego Pago</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {navItems.map((item) => {
+              {trafficItems.map((item) => {
+                const isActive = pathname === item.href || pathname.startsWith(item.href + "/")
+                return (
+                  <SidebarMenuItem key={item.name}>
+                    <SidebarMenuButton asChild isActive={isActive} tooltip={item.name}>
+                      <Link href={item.href}>
+                        <item.icon />
+                        <span>{item.name}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                )
+              })}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+        <SidebarGroup>
+          <SidebarGroupLabel>RD Station</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {rdStationItems.map((item) => {
                 const isActive = pathname === item.href || pathname.startsWith(item.href + "/")
                 return (
                   <SidebarMenuItem key={item.name}>
