@@ -40,7 +40,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   ]
   
   const rdStationItems = [
-    { name: 'Mensagens', href: '/rd-station/leads', icon: MessageSquare },
+    { name: 'Mensagens', href: '/marketing/rd-station', icon: MessageSquare },
   ]
 
   const handleSync = async () => {
@@ -107,7 +107,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarGroupContent>
         </SidebarGroup>
         <SidebarGroup>
-          <SidebarGroupLabel>RD Station</SidebarGroupLabel>
+          <SidebarGroupLabel>Marketing</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {rdStationItems.map((item) => {

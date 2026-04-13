@@ -12,7 +12,7 @@ import {
 import { Loader2 } from "lucide-react"
 import type { DbLeadRes } from "@/src/types/rdStation"
 
-export default function Leads() {
+export default function RdStation() {
     const defaultDate = (() => {
         const d = new Date()
         d.setDate(d.getDate() - 1)
