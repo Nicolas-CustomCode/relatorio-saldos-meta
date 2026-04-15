@@ -2,6 +2,7 @@
 
 import { listRdStationLeads } from "@/src/repositories/listRdStationLeads";
 import { getRdStationMessage } from "@/src/services/getRdStationMessage";
+import { sendMessage } from "@/src/services/sendMessage";
 import { NextResponse } from "next/server"
 
 export async function GET(req: Request) {
