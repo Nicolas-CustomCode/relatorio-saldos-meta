@@ -106,8 +106,8 @@ export default function RdStation() {
                     <Table>
                         <TableHeader>
                             <TableRow className="bg-muted/50">
-                                <TableHead className="px-4 py-4 text-[10px] font-bold uppercase tracking-widest w-1/4">Nome</TableHead>
-                                <TableHead className="px-4 py-4 text-[10px] font-bold uppercase tracking-widest w-1/3">Telefone</TableHead>
+                                <TableHead className="px-4 py-4 text-[10px] font-bold uppercase tracking-widest w-1/4">Telefone</TableHead>
+                                <TableHead className="px-4 py-4 text-[10px] font-bold uppercase tracking-widest w-1/3">Nome</TableHead>
                                 <TableHead className="px-4 py-4 text-[10px] font-bold uppercase tracking-widest w-1/3">Data</TableHead>
                             </TableRow>
                         </TableHeader>
